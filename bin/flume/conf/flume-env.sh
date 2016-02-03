@@ -1,0 +1,3 @@
+JAVA_OPTS="-Xms512m -Xmx2048m"
+
+# FLUME_CLASSPATH="x_y_z.jar"
