@@ -1,15 +1,25 @@
 # Eagle Eye
-An app built on CDH for tracking jobs that run in YARN framework with different priority. Those runtime "logs" are critical, in general they can be used for:
+An app built on **Cloudera Enterprise** for tracking jobs that run in YARN framework. Those runtime "logs" are critical, in general they can be used for:
 
 * real-time monitor, check whether the most critical jobs have gained enough resources;
-* resource usage summary reporting at job/queue granularity;
-* resource allocation snapshot to facilitate (cluster) historical status cross-check.
+* resource usage summary reporting at job/queue granularity, get the deeper insights of your cluster;
+* resource allocation snapshot, quickly check which job, or queue is hogging resources for any time period. 
 
 #### 1. Background
 
+![architecture](docs/img/architecture.png)
+
 #### 2. Prerequisite
 
+**Deploy Kafka**
+
+**Deploy Solr**
+
+**Deploy Flume**
+
 #### 3. Eagle Eye Setup & Demonstration
+
+All in one, Kafka, Solr, and Flume are already in CDH.
 
 In CDH, Hue now can provides a very easy way to build custom dashboards and visualizations, like below:
 
