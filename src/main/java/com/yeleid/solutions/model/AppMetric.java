@@ -14,6 +14,8 @@ public class AppMetric {
         appMetric.allocatedMB = (int)map.get("allocatedMB");
         appMetric.allocatedVCores = (int)map.get("allocatedVCores");
         appMetric.queue = (String)map.get("queue");
+        appMetric.user = (String)map.get("user");
+        appMetric.name = (String)map.get("name");
 
         appMetric.timestamp = Utils.getDateFormat(ts);
         appMetric.id = appMetric.applicationId + "$" + ts;
@@ -25,6 +27,8 @@ public class AppMetric {
     private int allocatedMB;
     private int allocatedVCores;
     private String queue;
+    private String name;
+    private String user;
 
     private String applicationId;
     private String timestamp;
@@ -46,5 +50,11 @@ public class AppMetric {
 
     public String getTimestamp() { return timestamp; }
     public void setTimestamp(String value) { timestamp = value; }
+
+    public String getName() { return name; }
+    public void setName(String value) { name = value; }
+
+    public String getUser() { return user; }
+    public void setUser(String value) { user = value; }
 
 }

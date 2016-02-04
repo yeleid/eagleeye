@@ -56,6 +56,8 @@
         <field name="allocatedVCores" type="int" stored="true" required="true" multiValued="false" />
         <field name="queue" type="string" indexed="true" stored="true" required="true" multiValued="false" />
         <field name="timestamp" type="tdate" indexed="true" stored="true" required="true" multiValued="false" />
+        <field name="user" type="string" indexed="true" stored="true" required="true" multiValued="false" />
+        <field name="name" type="text_ws" indexed="true" stored="true" required="true" multiValued="false" />
 
         <field name="_version_" type="long" indexed="true" stored="true"/>
 
