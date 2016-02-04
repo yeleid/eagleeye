@@ -119,13 +119,11 @@ Since the data are all in CDH, with standard/open protocol, you can easily retri
 
 #### 4. References
 
-*Flume solrsink: https://flume.apache.org/FlumeUserGuide.html*
-
-*Cloudera distribution of Apache Kafka: http://www.cloudera.com/documentation/kafka/latest/topics/kafka_packaging.html*
-
-*Yarn RM REST api: https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/ResourceManagerRest.html*
-
-
+```vim
+Flume solrsink: https://flume.apache.org/FlumeUserGuide.html
+Cloudera distribution of Apache Kafka: http://www.cloudera.com/documentation/kafka/latest/topics/kafka_packaging.html
+Yarn RM REST api: https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/ResourceManagerRest.html
+```
 
     
 
