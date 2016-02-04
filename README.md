@@ -117,6 +117,8 @@ To visualize the metrics, we use Hue, the easiest way to build custom dashboards
 
 Since the data are all in CDH, with standard/open protocol, you can easily retrieve the partition and build a more dedicated dashboards, e.g. using [d3](http://d3js.org/) library.
 
+![d3](docs/img/d3.png)
+
 #### 4. References
 
 ```vim
