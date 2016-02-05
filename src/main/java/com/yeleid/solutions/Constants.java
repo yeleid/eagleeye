@@ -10,7 +10,14 @@ public interface Constants {
     String KAFKA_TOPIC = "kafka_topic";
     String KAFKA_BROKER_LIST = "kafka_broker_list";
 
+    String HTTP_SERVER = "http_server";
+
     String PRODUCER = "producer";
     String KAFKA_PRODUCER = "kafka";
     String LOGGER_PRODUCER = "logger";
+    String HTTP_PRODUCER = "http";
+
+    String FORMAT = "format";
+    String CSV = "csv";
+    String JSON = "json";
 }

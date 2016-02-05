@@ -3,6 +3,7 @@ package com.yeleid.solutions;
 import com.google.common.io.ByteStreams;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
+import scala.collection.immutable.Stream;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -79,6 +80,9 @@ public class Utils {
                     }
                     else if (Constants.LOGGER_PRODUCER.equals(producer)) {
                         publishers.add(Publisher.loggerPublisher);
+                    }
+                    else if (Constants.HTTP_PRODUCER.equals(producer)) {
+                        publishers.add(Publisher.httpPublisher);
                     }
                 }
             }

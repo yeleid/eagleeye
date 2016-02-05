@@ -21,6 +21,8 @@ However, there is only summarized information there, it's NOT that straightforwa
 
 The high-level diagram above illustrates a simple setup. More specifically, **Eagle Eye service** will retrieve all running application metrics and send them to **Kafka** Channel, which in turn passes them to a MorphlineSolr sink in **Flume** agent. MorphlineSolr parses the messages, converts them into Solr documents, and sends them to **Solr** server. After the indexed documents appear in Solr, dashboards (e.g. **Hue**, or other dashboards) can be built for visualization. Also the metrics data can be sent to **Spark** (and/or Spark Streaming) for more advanced analysis.
 
+In case there all no Kafka brokers deployed yet, Eagle Eye service is able to send the metrics to Flume (through [Http source](https://flume.apache.org/FlumeUserGuide.html#http-source)) directly.
+
 **Application metrics (Resource Manager REST API) break down**
 
 ```xml
@@ -69,10 +71,11 @@ Later you may consider Solr data purge for storage/query efficiency via [Solr al
 
 **Deploy Flume**
 
-[Flume configuration](https://github.com/yeleid/eagleeye/blob/master/bin/flume/flume.properties)
+To get metrics from Kafka, you may use [configuration](https://github.com/yeleid/eagleeye/blob/master/bin/flume/properties/flume-kafka.properties)
+
 ```vim
 a1.sinks.k1.type = org.apache.flume.sink.solr.morphline.MorphlineSolrSink
-a1.sinks.k1.morphlineFile = bin/flume/morphline.conf
+a1.sinks.k1.morphlineFile = bin/flume/morphline/morphline-json.conf
 ...
 # Use a channel which buffers events in memory
 a1.channels.c1.type = org.apache.flume.channel.kafka.KafkaChannel
@@ -84,22 +87,38 @@ This flume agent will consume data from Kafka directly and leverage morphline to
 
     bin/flume/ng-flume.sh
 
+To receive metrics directly from Eagle Eye service, you may use [configuration](https://github.com/yeleid/eagleeye/blob/master/bin/flume/properties/flume-http.properties)
+
+```vim
+a1.sinks.k1.type = org.apache.flume.sink.solr.morphline.MorphlineSolrSink
+a1.sinks.k1.morphlineFile = bin/flume/morphline/morphline-csv.conf
+...
+a1.sources.r1.type = http
+a1.sources.r1.port = 4140
+```
+
 #### 3. Eagle Eye Setup & Demonstration
 
 Let's first look into the properties eagle eye use to configure the app dynamically:
 
 ```properties
-# define where to retrieve application information
+# define resource manager address where to retrieve application information
 yarn_applications_path=/ws/v1/cluster/apps?states=RUNNING
-rm_address=http://ec2-54-183-61-24.us-west-1.compute.amazonaws.com:8088
+rm_address=http://172.31.13.75:8088
+
+# define the sampling frequency, the format of metrics, and how to publish metrics
+schedule_period=5
+producer=http,logger
+# producer=kafka,logger
+format=csv
+# format=json
 
 # define the kafka broker and topic properties
 kafka_topic=eagleeye
 kafka_broker_list=172.31.13.76:9092,172.31.13.77:9092,172.31.13.78:9092
 
-# define the sampling frequency and how to handle metrics
-schedule_period=5
-producer=kafka,logger
+# define the http server
+http_server=http://172.31.13.75:4140
 ```
 
 By now, environments for eagle eys are all set, and you can start this app by typing the command as follows:

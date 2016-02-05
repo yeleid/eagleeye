@@ -57,4 +57,17 @@ public class AppMetric {
     public String getUser() { return user; }
     public void setUser(String value) { user = value; }
 
+    public String toCSV() {
+        char split = ',';
+        StringBuffer sb = new StringBuffer()
+                .append(id).append(split)
+                .append(applicationId).append(split)
+                .append(allocatedMB).append(split)
+                .append(allocatedVCores).append(split)
+                .append(queue).append(split)
+                .append(timestamp).append(split)
+                .append(user).append(split)
+                .append(name);
+        return sb.toString();
+    }
 }
